@@ -7,7 +7,6 @@ const CursorChat = ({
   setCursorState,
   updateMyPresence,
 }: CursorChatProps) => {
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: e.target.value });
     setCursorState({
@@ -42,7 +41,10 @@ const CursorChat = ({
       {cursorState.mode === CursorMode.Chat && (
         <>
           <CursorSVG color="#000" />
-          <div className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]">
+          <div
+            onKeyUp={(e) => e.stopPropagation()}
+            className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]"
+          >
             {cursorState.previousMessage && (
               <div>{cursorState.previousMessage}</div>
             )}
